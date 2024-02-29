@@ -1,0 +1,40 @@
+param N := ${chain_n};
+param K := ${kpar};
+param eps := 0.001;
+
+set M := ${mserv};
+set F := ${fog_nod};
+% for i in range(1, chain_n + 1):
+set C[${i}] :=
+%endfor
+
+param: 	lm		Sm		Om		:=
+	m1	0		0.1		0.02
+	m2	0		0.05	0.01;
+
+param:	lc 	:=
+	1	4.5		#4.5
+	2	9;	#4.5	#9
+
+param	P	:=
+	f1	1
+	f2	1.5		#1.5	
+	f3	1.2	;	#1.2
+	
+param	o:	m1	m2	:=
+		m1	0	0
+		m2	0	0	;
+
+param	d:	f1	f2	f3	:=
+		f1	0	0.4	0.3
+		f2	0.4	0	0.6	
+		f3	0.3	0.6	0	;
+		
+var		X:	f1	f2	f3	:=
+		m1	0	0	0
+		m2	0	0	0	;
+		
+	
+for {n in 1..N} {
+	for {m in C[n]} {
+		let lm[m] := lm[m] + lc[n];}}

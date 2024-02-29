@@ -104,6 +104,10 @@ class Problem:
 
         return list(self.servicechain.keys())
 
+    def get_servicechain(self, sc):
+        if sc in self.servicechain:
+            return self.servicechain[sc]
+
     def get_fog_list(self):
         """ Returns the list of fog nodes' names. """
 

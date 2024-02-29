@@ -1,3 +1,5 @@
+from amplpy import AMPL
+
 def test():
     #TODO
     pass
@@ -10,5 +12,8 @@ def load_time():
     #TODO
     pass
 
+
+
 if __name__ == '__main__':
-    pass
+    ampl = AMPL()
+    
