@@ -1,0 +1,37 @@
+option solver scip;
+model simple.mod;
+data simple1.dat;
+data Xt.dat;
+option display_1col 0;
+solve;
+if (solve_exitcode != 0)
+then {
+	print "Error";
+	}
+else{
+	if (solve_result_num >= 200 && solve_result_num < 300)
+	then {
+		print "infeasible";
+		}
+	else {
+		print "param Xt :=" > ./Xt.dat;
+		for {m in S} {
+			printf {f in F} "%s %s %d\n", m, f, X[m, f] >> ./Xt.dat;
+			}
+		printf ";\n\n" >> ./Xt.dat;
+		print "param Ot :=" >> ./Xt.dat;
+		printf {f in F} "%s %d\n", f, O[f] >> ./Xt.dat;
+		print ";" >> ./Xt.dat;
+		display X;
+		display Migration;
+		print "mig";
+		display sum {j in S, i in F} (gp[j, i] + gm[j,i]);
+		print "ON";
+		display sum {i in F}  O[i];
+		print "Spenti";
+		display sum {i in F} Om[i];
+		print "accesi";
+		display sum {i in F} Op[i];
+		}
+	}
+reset;

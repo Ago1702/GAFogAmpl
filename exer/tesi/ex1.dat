@@ -1,0 +1,59 @@
+param K := 10;
+param eps := 0.001;
+
+set Ct := c1 c2;
+set M := m1 m2;
+set F := f1 f2 f3;
+set C["c1"] := m1;
+set C["c2"] := m2;
+
+param: 	lm		Sm		Om		:=
+	m1	0.5		0.1		0.02
+	m2	1		0.05	0.01;
+
+param:	lc 	:=
+	c1	0.5		#4.5
+	c2	1;	#4.5	#9
+
+param	P	:=
+	f1	1
+	f2	1.5		#1.5	
+	f3	1.2	;	#1.2
+	
+param	o:	m1	m2	:=
+		m1	0	0
+		m2	0	0	;
+
+param	d:	f1	f2	f3	:=
+		f1	0	0.4	0.3
+		f2	0.4	0	0.6	
+		f3	0.3	0.6	0	;
+		
+var		X:	f1	f2	f3	:=
+		m1	0	0	0
+		m2	0	0	0	;
+		
+	
+for {n in 1..N} {
+	for {m in C[n]} {
+		let lm[m] := lm[m] + lc[n];}}
+		
+/*Risultato banale, basta che siano posti su nodi differenti
+
+		P[f2] = 1.5
+tutte le sol su 2 nodi differenti hanno lo stesso valore per la funz. obb.
+il solver pone, in tutti i tentativi m2 in f2.
+Questo a meno che non venga fornita una sol. iniziale con m1 in f2
+
+		lc[1] = 4.5
+sol ottenuta: m1 in f2, m2 in f3 a meno che non si fornisca m2 in f1 come sol iniziale
+
+		lc[2] = 4.5	P[f3] = 1.2
+la sol ottenuta risulta corretta
+	X:	f1	f2	f3	:=
+	m1	0	1	0
+	m2	0	0	1	;
+
+		lc[2] = 9
+*/
+		

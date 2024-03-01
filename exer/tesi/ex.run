@@ -1,0 +1,9 @@
+model ex.mod;
+data ex1.dat;
+option solver knitro;
+solve;
+printf("\n\n");
+display X;
+printf("\n\n");
+expand Response_Time;
+display Response_Time;

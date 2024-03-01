@@ -1,0 +1,17 @@
+set F:= f1 f2 f3;
+set S:= m1 m2 m3 m4;
+
+param mu := 10;
+
+param:	lmb		R	:=
+	m1	3		0.3
+	m2	3		0.25
+	m3	9		0.2
+	m4  3		0.2;
+	
+param Tsla := 1.5;
+
+param Wmig := 1;
+param Won := 10;
+param Woff := 5;
+param Wnode := 20;

@@ -1,0 +1,23 @@
+set F:= f1 f2 f3;
+set Sin:= m1 m2;
+set S:=;
+set Sout:=;
+
+param mu := 10;
+
+param:	lmb		R	:=
+	m1	0.5		0.3
+	m2	1		0.25;
+	
+param Tsla := 1.5;
+param Omg := 2;
+
+param Wmig := 0.5;
+param Won := 1;
+param Woff := 1;
+
+param Ot :=
+f1 0
+f2 0
+f3 0
+;
