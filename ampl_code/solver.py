@@ -1,7 +1,7 @@
 from amplpy import AMPL
 import os
 
-path_model = "exer\\tesi\enhanced.mod"
+path_model = "ampl_code\\ampl_file\classic.mod"
 path_data = "exer\\tesi\ex1.dat"
 
 def solve_prob():

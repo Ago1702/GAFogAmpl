@@ -1,10 +1,10 @@
 import numpy as np
 import json as js
 import csv
-from ..gafog.fog_problem.problem import Problem
-from ..gafog.problem_gen.genproblem import get_problem
+from gafog.fog_problem.problem import Problem
+from gafog.problem_gen.genproblem import get_problem
 
-dir = 'C:\\Users\\david\\Uni\\Paper\\fog\\GAFog\\warlock\\sample1\\'
+dir = 'C:\\Users\\david\\Uni\\Paper\\fog\\GAFogAmpl\\ampl_code\\sample1\\'
 
 config = {
     'nchain_fog': 0.4,
@@ -19,6 +19,7 @@ config = {
 }
 
 def random(arr: np.array, categories: list, prob: list, delta=0.01, max = 0.14, min = 0.07):
+    '''Una semplice funzione per la generazione delle variazioni nelle frequenze di attivazione'''
     n = np.size(arr)
     draw = np.random.choice(categories, n, p=prob)
     arr = np.add(arr, delta*draw)
@@ -26,8 +27,9 @@ def random(arr: np.array, categories: list, prob: list, delta=0.01, max = 0.14, 
     arr = np.where(arr < min, min, arr)
     return arr
 
-
 def lambda_changer(filename:str):
+    '''Funzione atta a leggere i file json del problema e variare le frequenze di attivazione ad ogni TS.
+    I nuovi TS verranno salvati in un file .csv'''
     categories = [-1, 0, 1]
     prob = [0.15, 0.15, 0.7]
     l = []
@@ -49,6 +51,10 @@ def lambda_changer(filename:str):
         for i in range(12):
             l = random(l, categories, prob[::-1])
             writer.writerow(map(lambda t: "%.3f" % t, l))
+
+def ampl_writer(json_path:str):
+    '''Funzione per convertire un file json in file .dat leggibile da AMPL'''
+    pass
 
 if __name__ == '__main__':
     prob = get_problem(config)

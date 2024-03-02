@@ -1,7 +1,7 @@
 <%!
     import json
     import pdb
-    from ampl_data.GAFog.gafog.fog_problem.problem import Problem
+    from gafog.fog_problem.problem import Problem
 
     def check_next(p, m1, m2):
         if(m1 == m2):
