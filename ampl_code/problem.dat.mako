@@ -26,7 +26,7 @@
         p = Problem(json.load(f))
 %>\
 param K := 10;
-param eps := 0.001;
+param eps := 0.05;
 
 set Ct:=\
 %for sc in p.get_servicechain_list():

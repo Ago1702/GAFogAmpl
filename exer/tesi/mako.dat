@@ -1,5 +1,5 @@
 param K := 10;
-param eps := 0.001;
+param eps := 0.05;
 
 set Ct:= SC1 SC2 SC3 SC4;
 set M := MS1_1 MS1_2 MS1_3 MS1_4 MS1_5 MS2_1 MS2_2 MS2_3 MS2_4 MS2_5 MS3_1 MS3_2 MS3_3 MS3_4 MS3_5 MS4_1 MS4_2 MS4_3 MS4_4 MS4_5;
