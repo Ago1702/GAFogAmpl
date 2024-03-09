@@ -27,13 +27,15 @@ config = {
 }
 
 class AmplProbUtil:
+    delta = 0
+    max_ = 0
+    min_ = 0
+
 
     def write_prob(self, json_path:str = "sample\sample_problem.json", dat_path:str = "exer\\tesi\mako.dat"):
         '''
         funzione atta a convertire il .json in un file .dat leggibile da AMPL
         '''
-        print(os.getcwd())
-        os.system("python -m gafog.problem_gen.genproblem")
         mt = Template(filename=mako_path)
         try:
             rd_mt=mt.render_unicode(filepro = json_path)
@@ -44,18 +46,21 @@ class AmplProbUtil:
             f.write(rd_mt.encode())
             f.close()
     
-    def random(self, arr: np.array, categories: list, prob: list, delta=0.01, max = 0.14, min = 0.07):
+    def random(self, arr: np.array, categories: list, prob: list):
         '''Una semplice funzione per la generazione delle variazioni nelle frequenze di attivazione'''
         n = np.size(arr)
         draw = np.random.choice(categories, n, p=prob)
-        arr = np.add(arr, delta*draw)
-        arr = np.where(arr > max, max, arr)
-        arr = np.where(arr < min, min, arr)
+        arr = np.add(arr, self.delta*draw)
+        arr = np.where(arr > self.max_, self.max_, arr)
+        arr = np.where(arr < self.min_, self.min_, arr)
         return arr
 
-    def lambda_changer(self, filename:str):
+    def lambda_changer(self, filename:str, max_, min_, delta):
         '''Funzione atta a leggere i file json del problema e variare le frequenze di attivazione ad ogni TS.
         I nuovi TS verranno salvati in un file .csv'''
+        self.max_ = max_
+        self.min_ = min_
+        self.delta = delta
         categories = [-1, 0, 1]
         prob = [0.15, 0.15, 0.7]
         l = []
@@ -71,6 +76,7 @@ class AmplProbUtil:
         with open(filename, 'w', encoding="UTF-8", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(j['servicechain'])
+            writer.writerow(map(lambda t: "%.3f" % t, l))
             for i in range(12):
                 l = self.random(l, categories, prob)
                 writer.writerow(map(lambda t: "%.3f" % t, l))
