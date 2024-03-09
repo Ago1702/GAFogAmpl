@@ -46,6 +46,9 @@ var Rc {c in Ct} =
 	
 minimize Active_Node:
 	sum {f in F} On[f];
+
+subject to Min_Node:
+	sum {f in F} On[f] >= 1;
 	
 subject to Presence {m in M}:
 	sum {f in F} X[m,f] = 1;

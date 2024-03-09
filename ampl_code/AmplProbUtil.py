@@ -31,6 +31,19 @@ class AmplProbUtil:
     max_ = 0
     min_ = 0
 
+    def csv_time_reader(self, filename:str):
+        time_l = []
+        with open(filename, 'r', encoding="UTF-8", newline='') as f:
+            has_header = csv.Sniffer().has_header(f.read(1024))
+            f.seek(0)  # Rewind.
+            reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
+            if has_header:
+                next(reader)
+            for row in reader:
+                time_l.append(row)
+            f.close()
+        return time_l
+            
 
     def write_prob(self, json_path:str = "sample\sample_problem.json", dat_path:str = "exer\\tesi\mako.dat"):
         '''
@@ -74,8 +87,8 @@ class AmplProbUtil:
 
         l = np.array(l)
         with open(filename, 'w', encoding="UTF-8", newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow(j['servicechain'])
+            writer = csv.writer(f, quotechar="'")
+            writer.writerow(f'"{s}"' for s in j['servicechain'])
             writer.writerow(map(lambda t: "%.3f" % t, l))
             for i in range(12):
                 l = self.random(l, categories, prob)
