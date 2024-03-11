@@ -6,14 +6,15 @@ set F;			#Fog nodes
 set M;			#Services
 set C{Ct} within M;
 
-var X{M,F} binary;	#Service j on node i at t + 1
+var X{m in M,f in F} binary;	#Service j on node i at t + 1
 
 param lc {c in Ct} >= 0;
 param lm {j in M} >= 0;			#incomin req. rate at t
 var lf {i in F} = 
 	sum {j in M} lm[j]*X[j,i];
 
-param wc {c in Ct} >= 0;
+param l = sum {c in Ct} lc[c];
+param wc {c in Ct} = lc[c]/l;
 
 param P {i in F} >= 0;				#comp power node i
 param o {M,M} binary;		#microserv order
@@ -44,8 +45,7 @@ var Wf {i in F} =
 				else*/ (Si[i]^2 + O2i[i]) * lf[i]/(2*(1 - lf[i]*Si[i]));
 
 var Rc {c in Ct} = 
-	sum {m in C[c]} sum {f in F} X[m,f] * Wf[f] +
-	sum {mm in C[c]} Sm[mm] +
+	sum {m in C[c]} sum {f in F} X[m,f] * (Wf[f] + Sm[m]/P[f]) +
 	sum {m1 in C[c], m2 in C[c]} (sum {f1 in F, f2 in F} (o[m1,m2] * X[m1,f1] * X[m2,f2] * d[f1,f2]));
 
 var tot_time = sum {c in Ct} Rc[c] * wc[c];
@@ -56,7 +56,7 @@ var gp {M,F} binary;	#service j migrate to node i
 var om {F} binary;		#node powered off
 var op {F} binary;		#node powerd on
 
-var O {i in F} binary;
+var On {i in F} binary;
 
 #Weight
 param Wmig = 1;
@@ -65,16 +65,16 @@ param Woff = 5;
 param Wnode = 20;
 
 minimize Migration:
-	Wmig * sum {j in M, i in F} (gp[j, i] + gm[j,i]) + sum {i in F} (Won * op[i] + Woff * om[i] + Wnode * O[i]);
+	Wmig * sum {j in M, i in F} (gp[j, i] + gm[j,i]) + sum {i in F} (Won * op[i] + Woff * om[i] + Wnode * On[i]);
 	
 subject to Overload {i in F}:
-	lf[i]*Si[i] <= O[i]*(1 - eps);
+	lf[i]*Si[i] <= On[i]*(1 - eps);
+
+subject to Allocation {m in M}:
+	sum {f in F} X[m, f] == 1;
 	
 subject to Response_Sla {c in Ct}:
 	Rc[c] <= Tsla[c];
-	
-subject to Allocation {j in M}:
-	sum {i in F} X[j,i] = 1;
 	
 subject to In_Out {j in M}:
 	sum {i in F} gp[j,i] == sum {i in F} gm[j,i];
@@ -101,7 +101,4 @@ subject to Off_if_On {i in F}:
 	om[i] <= Ot[i];
 	
 subject to Lol {i in F}:
-	om[i] + op[i] <= 1;
-
-subject to Qualcosa {i in F}:
-	O[i] = Ot[i] + op[i] - om[i];	#node i on at t;
+	om[i] + op[i] <= 1;	#node i on at t;
