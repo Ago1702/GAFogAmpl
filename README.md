@@ -4,7 +4,9 @@ Un script di risoluzione che fa uso di AMPL
 - __python -m ampl_code.solver__ è il comando da eseguire nella directory GAFogAmpl per avviare la risoluzione di due problemi
 - Il primo sarà quello semplice che ha, come obiettivo principale la riduzione dei nodi accesi
 - Il secondo sarà quello dinamico che punta alla riduzione delle varizioni nel sistema
+
 I risultati dei vari problemi verranno salvati di default nella cartella ampl_code\example:
+
 - __prova.dat__ è il file dove viene salvata la configurazione del problema
 - __prob.json__ è il file json generato dal generatore di problemi in __fog_problem__
 - __prob.csv__ un file csv contenente tutte la variazioni di tempo del sistema
