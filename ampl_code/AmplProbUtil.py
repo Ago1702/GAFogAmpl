@@ -11,7 +11,6 @@ from gafog.problem_gen.genproblem import get_problem
 
 
 
-dir = 'C:\\Users\\david\\Uni\\Paper\\fog\\GAFogAmpl\\ampl_code\\sample1\\'
 mako_path = "ampl_code\problem.dat.mako"
 
 config = {
@@ -44,7 +43,6 @@ class AmplProbUtil:
             f.close()
         return time_l
             
-
     def write_prob(self, json_path:str = "sample\sample_problem.json", dat_path:str = "exer\\tesi\mako.dat"):
         '''
         funzione atta a convertire il .json in un file .dat leggibile da AMPL
@@ -96,6 +94,7 @@ class AmplProbUtil:
             for i in range(12):
                 l = self.random(l, categories, prob[::-1])
                 writer.writerow(map(lambda t: "%.3f" % t, l))
+        return filename
 
 '''if __name__ == '__main__':
     prob = get_problem(config)

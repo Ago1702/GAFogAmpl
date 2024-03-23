@@ -1,9 +1,11 @@
+import os
+import sys
+import argparse
+import json as js
+from pathlib import Path
 from amplpy import AMPL
 from gafog.fog_problem.problem import Problem
 from gafog.problem_gen.genproblem import get_problem
-import json as js
-import os
-import sys
 from ampl_code.AmplProbUtil import AmplProbUtil
 
 config = {
@@ -18,10 +20,47 @@ config = {
     'response': "file://sample_output.json",
 }
 
-comp_model = "ampl_code\\ampl_file\complex.mod"
-simp_model = "ampl_code\\ampl_file\classic.mod"
-path_data = "ampl_code\prova.dat"
-VERB = True
+
+VERB = False
+SOLVE_TIME = 100
+COMP_MODE = "ampl_code\\ampl_file\\complex.mod"
+SIMP_MODEL = "ampl_code\\ampl_file\\classic.mod"
+PATH_DATA = "ampl_code\\prova.dat"
+PATH_WORK = "ampl_code\\example\\"
+
+
+def input_param(args:argparse.Namespace):
+    global VERB, PATH_WORK, SOLVE_TIME
+    VERB = args.verbose
+    SOLVE_TIME = args.time
+    if args.destination is not None:
+        PATH_WORK = str.rstrip(args.destination,"\\/") + "\\"
+    try:
+        p = Path(PATH_WORK)
+    except:
+        print("incorrect path format, default path set")
+        PATH_WORK = "ampl_code\\example\\"
+        p = Path(PATH_WORK)
+    return p
+
+def dir_creation(p:Path):
+    simple_location = p / "simple"
+    complex_location = p / "complex"
+    try:
+        Path.mkdir(p, parents=True, exist_ok=True)
+        Path.mkdir(simple_location, parents=True, exist_ok=True)
+        Path.mkdir(complex_location, parents=True, exist_ok=True)
+    except FileExistsError:
+        print("One of the necessary path already exists and is a file, default option will be set")
+        global PATH_WORK
+        PATH_WORK = "ampl_code\\example\\"
+        p = Path(PATH_WORK)
+        simple_location = p / "simple"
+        complex_location = p / "complex"
+        Path.mkdir(p, parents=True, exist_ok=True)
+        Path.mkdir(simple_location, parents=True, exist_ok=True)
+        Path.mkdir(complex_location, parents=True, exist_ok=True)
+    return p, simple_location, complex_location
 
 def test_option(ampl:AMPL):
     '''
@@ -30,7 +69,7 @@ def test_option(ampl:AMPL):
     #TODO
     pass
 
-def solve_prob_simple(ampl:AMPL, data_path:str = path_data, time_list:list = None, ret = False):
+def solve_prob_simple(ampl:AMPL, data_path:str = PATH_DATA, time_list:list = None, ret = False):
     ampl.read_data(data_path)
     if(time_list):
         load_time(ampl, time_list)
@@ -41,7 +80,7 @@ def solve_prob_simple(ampl:AMPL, data_path:str = path_data, time_list:list = Non
     else:
         return True
 
-def solve_prob_complex(ampl:AMPL, data_path:str = path_data, time_list:list = None, node:dict = None, services:dict = None):
+def solve_prob_complex(ampl:AMPL, data_path:str = PATH_DATA, time_list:list = None, node:dict = None, services:dict = None):
     ampl.read_data(data_path)
     if(time_list):
         load_time(ampl, time_list)
@@ -69,7 +108,8 @@ def test():
     #TODO
     pass
 
-def setup(ampl:AMPL, model:str = simp_model, solver:str = "BONMIN", time_limit = 100):
+def setup(ampl:AMPL, model:str = SIMP_MODEL, solver:str = "BONMIN", time_limit = SOLVE_TIME):
+    print(time_limit)
     ampl.reset()
     ampl.read(model)
     ampl.option["solver"] = solver
@@ -97,6 +137,9 @@ def print_sol(ampl:AMPL, filename:str, time, compl:bool = False):
                 print(f"{k} = {d1[k]}", file=f)
 
 def retrive_param():
+    '''
+    Un primo tentativo, abbastanza brutto ma funzionale di ottenere i parametri di variazione dei lambda.
+    '''
     base = config["rho"]
     config["rho"] = 0.7
     prob = get_problem(config).dump_problem()
@@ -109,37 +152,35 @@ def retrive_param():
     return max_, min_, delta
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-v', '--verbose', action= "store_true", help="Verbose output, display solver's verbose output")
+    parser.add_argument('-d', '--destination', help = "specify the dir where files will be saved")
+    parser.add_argument('-t', '--time', help=f"set the maximum solving time (s) for each problem, default {SOLVE_TIME}", type=int)
+    p = input_param(parser.parse_args())
     ampl = AMPL()
-    path_work = "ampl_code\\example\\"
-    simple_location = path_work + "simple"
-    complex_location = path_work + "complex"
-    if not os.path.isdir(path_work):
-        os.mkdir(path_work)
-        os.mkdir(simple_location)
-        os.mkdir(complex_location)
+    p, simple_location, complex_location = dir_creation(p)
     prob = get_problem(config)
-    path_work_js = path_work + "prova.json"
+    path_work_js = p / "prob.json"
     with open(path_work_js, "w+") as f:
         js.dump(prob.dump_problem(), f, indent=2)
         f.close()
     util = AmplProbUtil()
-    util.lambda_changer(path_work_js, *retrive_param())
-    time_l = util.csv_time_reader(path_work + "prova.csv")
-    path_data = path_work + "prova.dat"
-    util.write_prob(path_work_js, path_data)
+    csv_path = util.lambda_changer(path_work_js.__str__(), *retrive_param())
+    time_l = util.csv_time_reader(csv_path)
+    PATH_DATA = PATH_WORK + "prova.dat"
+    util.write_prob(path_work_js, PATH_DATA)
     print(f"solving problem N #0 --> simple")
-    setup(ampl)
-    res = solve_prob_simple(ampl, path_data, time_list=time_l[0])
+    setup(ampl, time_limit=SOLVE_TIME)
+    res = solve_prob_simple(ampl, PATH_DATA, time_list=time_l[0])
     services = ampl.get_variable("X").get_values().to_dict()
-    print(services)
     node = ampl.get_variable("On").get_values().to_dict()
-    print_sol(ampl, f"{path_work}\\res0.bo", time=time_l[0])
+    print_sol(ampl, p / "res0.bo", time=time_l[0])
     for i in range(1, 25):
         print(f"solving problem N #{i} --> simple")
-        setup(ampl)
-        res = solve_prob_simple(ampl, path_data, time_list=time_l[i])
-        print_sol(ampl, f"{simple_location}\\res{i}.bo", time=time_l[i])
+        setup(ampl, time_limit=SOLVE_TIME)
+        res = solve_prob_simple(ampl, PATH_DATA, time_list=time_l[i])
+        print_sol(ampl, simple_location / f"res{i}.bo", time=time_l[i])
         print(f"solving problem N #{i} --> complex")
-        setup(ampl, model=comp_model)
-        res, services, node = solve_prob_complex(ampl, data_path = path_data, time_list=time_l[i], services=services, node=node)
-        print_sol(ampl, f"{complex_location}\\res{i}.bo", time=time_l[i], compl=True)
+        setup(ampl, model=COMP_MODE, time_limit=SOLVE_TIME)
+        res, services, node = solve_prob_complex(ampl, data_path = PATH_DATA, time_list=time_l[i], services=services, node=node)
+        print_sol(ampl, complex_location / f"res{i}.bo", time=time_l[i], compl=True)
