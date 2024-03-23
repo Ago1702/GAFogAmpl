@@ -1,3 +1,14 @@
+# Ampl Solver
+
+Un script di risoluzione che fa uso di AMPL
+- python -m ample_code.solver è il comando da eseguire nella directory GAFogAmpl per avviare la risoluzione di due problemi
+- Il primo sarà quello semplice che ha, come obiettivo principale la riduzione dei nodi accesi
+- Il secondo sarà quello dinamico che punta alla riduzione delle varizioni nel sistema
+I risultati dei vari problemi verranno salvati di default nella cartella ampl_code\example:
+- prova.dat è il file dove viene salvata la configurazione del problema
+- prob.json
+
+# Original
 # Fog GA with Docker integration
 
 Joint work with university of Bologna
