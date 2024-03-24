@@ -38,9 +38,12 @@ var O2f{f in F} = (if lf[f] = 0
 					
 var Wf {f in F} = 
 	(Sf[f]^2 + O2f[f]) * lf[f] / (2 * (1 - lf[f]*Sf[f]));		#Expected waiting time from Pollaczek Khinchin eq.
-var Rc {c in Ct} = 
-	sum {m in C[c]} sum {f in F} X[m,f] * (Wf[f] + Sm[m] / P[f]) +
+
+var Wc {c in Ct} =
 	sum {m1 in C[c], m2 in C[c]} (sum {f1 in F, f2 in F} (o[m1,m2] * X[m1,f1] * X[m2,f2] * d[f1,f2]));
+
+var Rc {c in Ct} = 
+	sum {m in C[c]} sum {f in F} X[m,f] * (Wf[f] + Sm[m] / P[f]) + Wc[c];
 	
 	
 	

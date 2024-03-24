@@ -29,24 +29,26 @@ param Ot {i in F} binary;			#Node i on at t-1
 
 param Tsla {c in Ct} = K*(sum {m in C[c]} Sm[m]);
 
-var Si {i in F} = 
+var Sf {i in F} = 
 				if lf[i] == 0
 				then 0
 				else (sum {j in M} X[j,i] * (lm[j]/lf[i]) * Sm[j])/P[i];
 
-var O2i {i in F} = 
+var O2f {i in F} = 
 					if lf[i] == 0
 					then 0
-					else (sum {j in M} X[j,i] * (lm[j]/lf[i]) * (Sm[j]^2 + Om[j]^2))/(P[i]^2) - Si[i]^2;
+					else (sum {j in M} X[j,i] * (lm[j]/lf[i]) * (Sm[j]^2 + Om[j]^2))/(P[i]^2) - Sf[i]^2;
 
 var Wf {i in F} =
-				/*if lf[i]*Si[i] == 1
+				/*if lf[i]*Sf[i] == 1
 				then Infinity
-				else*/ (Si[i]^2 + O2i[i]) * lf[i]/(2*(1 - lf[i]*Si[i]));
+				else*/ (Sf[i]^2 + O2f[i]) * lf[i]/(2*(1 - lf[i]*Sf[i]));
+
+var Wc {c in Ct} =
+	sum {m1 in C[c], m2 in C[c]} (sum {f1 in F, f2 in F} (o[m1,m2] * X[m1,f1] * X[m2,f2] * d[f1,f2]));
 
 var Rc {c in Ct} = 
-	sum {m in C[c]} sum {f in F} X[m,f] * (Wf[f] + Sm[m]/P[f]) +
-	sum {m1 in C[c], m2 in C[c]} (sum {f1 in F, f2 in F} (o[m1,m2] * X[m1,f1] * X[m2,f2] * d[f1,f2]));
+	sum {m in C[c]} sum {f in F} X[m,f] * (Wf[f] + Sm[m]/P[f]) + Wc[c];
 
 var tot_time = sum {c in Ct} Rc[c] * wc[c];
 
@@ -68,7 +70,7 @@ minimize Migration:
 	Wmig * sum {j in M, i in F} (gp[j, i] + gm[j,i]) + sum {i in F} (Won * op[i] + Woff * om[i] + Wnode * On[i]);
 	
 subject to Overload {i in F}:
-	lf[i]*Si[i] <= On[i]*(1 - eps);
+	lf[i]*Sf[i] <= On[i]*(1 - eps);
 
 subject to Allocation {m in M}:
 	sum {f in F} X[m, f] == 1;

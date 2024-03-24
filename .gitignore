@@ -22,5 +22,6 @@ data.*
 **/osmarender/**
 fog*.ned
 !sample_input*.json
-**/prova.*
+**prova.*
 */ampl_code/example/*
+ignore/*
