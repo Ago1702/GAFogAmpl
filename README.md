@@ -10,13 +10,14 @@ I risultati dei vari problemi verranno salvati di default nella cartella ampl_co
 - __prova.dat__ è il file dove viene salvata la configurazione del problema
 - __prob.json__ è il file json generato dal generatore di problemi in __fog_problem__
 - __prob.csv__ un file csv contenente tutte la variazioni di tempo del sistema
-- __res0.bo__ prima configurazione ottenuta dal solver comune a entrambi i problemi
-- __complex/__, __simple/__ directory contenenti i file __.bo__ con le configurazioni relative ai due problemi
+- __res0.json__ prima configurazione ottenuta dal solver comune a entrambi i problemi
+- __complex/__, __simple/__ directory contenenti i file __.json__ con le configurazioni risultanti relative ai due problemi
 
 È possibile, per ora, fornire i seguenti argomenti da linea di comando:
 - __-v__ per attivare la modalità verbose
 - __-d__ per cambiare la posizione di default dell'output (_ampl_code\example_)
 - __-t__ per modificare il tempo (s) massimo di risoluzione di un problema, default 200
+- __-s__ per utilizzare il mio orribile formato per salvare i dati
 
 # Original
 # Fog GA with Docker integration
