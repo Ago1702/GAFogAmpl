@@ -234,6 +234,12 @@ if __name__ == '__main__':
     print(f"solving problem N #0 --> simple")
     setup(ampl, time_limit=SOLVE_TIME)
     res = solve_prob_simple(ampl, PATH_DATA, time_list=time_l[0])
+    if res:
+        print("Solved")
+    else:
+        print("Failed")
+    if not res:
+        sys.exit(1)
     services = ampl.get_variable("X").get_values().to_dict()
     node = ampl.get_variable("On").get_values().to_dict()
     with open(path_work_js.parent / "res0.json", "w+") as f:
@@ -245,6 +251,10 @@ if __name__ == '__main__':
         print(f"solving problem N #{i} --> simple")
         setup(ampl, time_limit=SOLVE_TIME)
         res = solve_prob_simple(ampl, PATH_DATA, time_list=time_l[i])
+        if res:
+            print("Solved")
+        else:
+            print("Failed")
         if STUPID:
             print_sol(ampl, simple_location / f"res{i}.bo", time=time_l[i])
         with open(simple_location / f"res{i}.json", "w+") as f:
@@ -253,6 +263,10 @@ if __name__ == '__main__':
         print(f"solving problem N #{i} --> complex")
         setup(ampl, model=COMP_MODE, time_limit=SOLVE_TIME)
         res, services, node = solve_prob_complex(ampl, data_path = PATH_DATA, time_list=time_l[i], services=services, node=node)
+        if res:
+            print("Solved")
+        else:
+            print("Failed")
         if STUPID:
             print_sol(ampl, complex_location / f"res{i}.bo", time=time_l[i], compl=True)
         with open(complex_location / f"res{i}.json", "w+") as f:
