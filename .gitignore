@@ -23,6 +23,6 @@ data.*
 fog*.ned
 !sample_input*.json
 **prova.*
-ampl_code/example/
+ampl_code/example*/
 ignore/*
 .gitignore

@@ -8,12 +8,13 @@ from amplpy import AMPL
 from gafog.fog_problem.problem import Problem
 from gafog.problem_gen.genproblem import get_problem
 from ampl_code.AmplProbUtil import AmplProbUtil
+import itertools
 
 config = {
     'nchain_fog': 0.4,
     'nsrv_chain': 2,
     'nchain': 2,
-    'nfog': 4,
+    'nfog': 5,
     'tchain': 10.0,
     'rho': 0.3,
     'enable_network': True,
@@ -23,15 +24,19 @@ config = {
 
 
 VERB = False
-SOLVE_TIME = 100
+SOLVE_TIME = 300
 STUPID = False
 COMP_MODE = "ampl_code\\ampl_file\\complex.mod"
 SIMP_MODEL = "ampl_code\\ampl_file\\classic.mod"
 PATH_DATA = "ampl_code\\prova.dat"
 PATH_WORK = "ampl_code\\example\\"
 
+#TODO modificare il json inserendo le migrazioni e gli spegnimenti
+
 
 def input_param(args:argparse.Namespace):
+    #TODO aggiungere un metodo di input della configurazione
+
     global VERB, PATH_WORK, SOLVE_TIME, STUPID
     VERB = args.verbose
     STUPID = args.stupid
@@ -50,13 +55,14 @@ def input_param(args:argparse.Namespace):
 def dir_creation(p:Path):
     simple_location = p / "simple"
     complex_location = p / "complex"
+    global PATH_WORK
     try:
+        PATH_WORK = p.__str__() + "\\"
         Path.mkdir(p, parents=True, exist_ok=True)
         Path.mkdir(simple_location, parents=True, exist_ok=True)
         Path.mkdir(complex_location, parents=True, exist_ok=True)
     except FileExistsError:
         print("One of the necessary path already exists and is a file, default option will be set")
-        global PATH_WORK
         PATH_WORK = "ampl_code\\example\\"
         p = Path(PATH_WORK)
         simple_location = p / "simple"
@@ -158,6 +164,17 @@ def json_sol(ampl:AMPL) -> dict:
             n_line.append(delay[f1, f2])
         network.append(n_line)
     sol["network"] = network
+    try:
+        mig_in = ampl.get_variable("gp").get_values().to_dict()
+        mig_out = ampl.get_variable("gm").get_values().to_dict()
+        node = ampl.get_set("F")
+        migration = {}
+        for f1, f2, ms  in itertools.product(node, node, ampl.get_set("M")):
+            if(mig_in[ms, f1] == 1 and mig_out[ms, f2] == 1):
+                migration[ms] = [f1, f2]
+        sol["migrations"] = migration
+    except:
+        pass
     return sol
 
 def load_time(ampl:AMPL, time_list:list):
@@ -212,14 +229,8 @@ def retrive_param():
     config["rho"] = base
     return max_, min_, delta
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-v', '--verbose', action= "store_true", help="Verbose output, display solver's verbose output")
-    parser.add_argument('-s', '--stupid', action= "store_true", help="Enable the first horrible save")
-    parser.add_argument('-d', '--destination', help = "specify the dir where files will be saved")
-    parser.add_argument('-t', '--time', help=f"set the maximum solving time (s) for each problem, default {SOLVE_TIME}", type=int)
-    p = input_param(parser.parse_args())
-    ampl = AMPL()
+
+def solve_problem(p):
     p, simple_location, complex_location = dir_creation(p)
     prob = get_problem(config)
     path_work_js = p / "prob.json"
@@ -232,6 +243,7 @@ if __name__ == '__main__':
     PATH_DATA = PATH_WORK + "prova.dat"
     util.write_prob(path_work_js, PATH_DATA)
     print(f"solving problem N #0 --> simple")
+    ampl = AMPL()
     setup(ampl, time_limit=SOLVE_TIME)
     res = solve_prob_simple(ampl, PATH_DATA, time_list=time_l[0])
     if res:
@@ -272,3 +284,14 @@ if __name__ == '__main__':
         with open(complex_location / f"res{i}.json", "w+") as f:
             js.dump(json_sol(ampl), f, indent=2)
             f.close()
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-v', '--verbose', action= "store_true", help="Verbose output, display solver's verbose output")
+    parser.add_argument('-s', '--stupid', action= "store_true", help="Enable the first horrible save")
+    parser.add_argument('-d', '--destination', help = "specify the dir where files will be saved")
+    parser.add_argument('-t', '--time', help=f"set the maximum solving time (s) for each problem, default {SOLVE_TIME}", type=int)
+    p = input_param(parser.parse_args())
+    print(p.__str__())
+    for i in range(10):
+        solve_problem(p / f"prob{i}/")

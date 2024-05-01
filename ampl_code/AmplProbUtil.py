@@ -15,8 +15,8 @@ mako_path = "ampl_code\problem.dat.mako"
 
 config = {
     'nchain_fog': 0.4,
-    'nsrv_chain': 5,
-    'nchain': 4,
+    'nsrv_chain': 4,
+    'nchain': 3,
     'nfog': 5,
     'tchain': 10.0,
     'rho': 0.4,
@@ -73,7 +73,7 @@ class AmplProbUtil:
         self.min_ = min_
         self.delta = delta
         categories = [-1, 0, 1]
-        prob = [0.15, 0.15, 0.7]
+        prob = [0.10, 0.10, 0.8]
         l = []
 
         with open(filename) as f:
