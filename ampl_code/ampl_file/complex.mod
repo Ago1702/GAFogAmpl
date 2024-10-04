@@ -1,5 +1,6 @@
 param K;
 param eps;
+param epsT = 0.00001;
 
 set Ct;
 set F;			#Fog nodes
@@ -67,7 +68,7 @@ param Woff = 5;
 param Wnode = 20;
 
 minimize Migration:
-	Wmig * sum {j in M, i in F} (gp[j, i] + gm[j,i]) + sum {i in F} (Won * op[i] + Woff * om[i] + Wnode * On[i]);
+	epsT * tot_time + Wmig * sum {j in M, i in F} (gp[j, i] + gm[j,i]) + sum {i in F} (Won * op[i] + Woff * om[i] + Wnode * On[i]);
 	
 subject to Overload {i in F}:
 	lf[i]*Sf[i] <= On[i]*(1 - eps);

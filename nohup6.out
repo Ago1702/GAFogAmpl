@@ -1,0 +1,424 @@
+ampl_code/example/prob0/
+ampl_code/example/prob0/prova.dat
+solving problem N #0 --> simple
+Solved
+solving problem N #1 --> simple
+Solved
+solving problem N #1 --> complex
+Solved
+solving problem N #2 --> simple
+Failed
+solving problem N #2 --> complex
+Solved
+solving problem N #3 --> simple
+Solved
+solving problem N #3 --> complex
+Failed
+solving problem N #4 --> simple
+Failed
+solving problem N #4 --> complex
+Solved
+solving problem N #5 --> simple
+Solved
+solving problem N #5 --> complex
+Failed
+solving problem N #6 --> simple
+Failed
+solving problem N #6 --> complex
+Failed
+solving problem N #7 --> simple
+Solved
+solving problem N #7 --> complex
+Failed
+solving problem N #8 --> simple
+Solved
+solving problem N #8 --> complex
+Failed
+solving problem N #9 --> simple
+Failed
+solving problem N #9 --> complex
+Failed
+solving problem N #10 --> simple
+Failed
+solving problem N #10 --> complex
+Failed
+solving problem N #11 --> simple
+Failed
+solving problem N #11 --> complex
+Failed
+solving problem N #12 --> simple
+Solved
+solving problem N #12 --> complex
+Failed
+solving problem N #13 --> simple
+Solved
+solving problem N #13 --> complex
+Failed
+solving problem N #14 --> simple
+Solved
+solving problem N #14 --> complex
+Failed
+solving problem N #15 --> simple
+Solved
+solving problem N #15 --> complex
+Failed
+solving problem N #16 --> simple
+Failed
+solving problem N #16 --> complex
+Failed
+solving problem N #17 --> simple
+Solved
+solving problem N #17 --> complex
+Failed
+solving problem N #18 --> simple
+Solved
+solving problem N #18 --> complex
+Failed
+solving problem N #19 --> simple
+Failed
+solving problem N #19 --> complex
+Failed
+solving problem N #20 --> simple
+Solved
+solving problem N #20 --> complex
+Failed
+solving problem N #21 --> simple
+Failed
+solving problem N #21 --> complex
+Solved
+solving problem N #22 --> simple
+Solved
+solving problem N #22 --> complex
+Failed
+solving problem N #23 --> simple
+Solved
+solving problem N #23 --> complex
+Solved
+solving problem N #24 --> simple
+Failed
+solving problem N #24 --> complex
+Solved
+ampl_code/example/prob1/
+ampl_code/example/prob1/prova.dat
+solving problem N #0 --> simple
+Failed
+ampl_code/example/prob2/
+ampl_code/example/prob2/prova.dat
+solving problem N #0 --> simple
+Failed
+ampl_code/example/prob3/
+ampl_code/example/prob3/prova.dat
+solving problem N #0 --> simple
+Failed
+ampl_code/example/prob4/
+ampl_code/example/prob4/prova.dat
+solving problem N #0 --> simple
+Failed
+ampl_code/example/prob5/
+ampl_code/example/prob5/prova.dat
+solving problem N #0 --> simple
+Failed
+ampl_code/example/prob6/
+ampl_code/example/prob6/prova.dat
+solving problem N #0 --> simple
+Solved
+solving problem N #1 --> simple
+Solved
+solving problem N #1 --> complex
+Failed
+solving problem N #2 --> simple
+Solved
+solving problem N #2 --> complex
+Solved
+solving problem N #3 --> simple
+Failed
+solving problem N #3 --> complex
+Failed
+solving problem N #4 --> simple
+Solved
+solving problem N #4 --> complex
+Solved
+solving problem N #5 --> simple
+Failed
+solving problem N #5 --> complex
+Failed
+solving problem N #6 --> simple
+Solved
+solving problem N #6 --> complex
+Failed
+solving problem N #7 --> simple
+Solved
+solving problem N #7 --> complex
+Failed
+solving problem N #8 --> simple
+Failed
+solving problem N #8 --> complex
+Failed
+solving problem N #9 --> simple
+Solved
+solving problem N #9 --> complex
+Failed
+solving problem N #10 --> simple
+Solved
+solving problem N #10 --> complex
+Failed
+solving problem N #11 --> simple
+Solved
+solving problem N #11 --> complex
+Failed
+solving problem N #12 --> simple
+Failed
+solving problem N #12 --> complex
+Failed
+solving problem N #13 --> simple
+Failed
+solving problem N #13 --> complex
+Failed
+solving problem N #14 --> simple
+Solved
+solving problem N #14 --> complex
+Failed
+solving problem N #15 --> simple
+Failed
+solving problem N #15 --> complex
+Failed
+solving problem N #16 --> simple
+Failed
+solving problem N #16 --> complex
+Failed
+solving problem N #17 --> simple
+Failed
+solving problem N #17 --> complex
+Failed
+solving problem N #18 --> simple
+Failed
+solving problem N #18 --> complex
+Failed
+solving problem N #19 --> simple
+Solved
+solving problem N #19 --> complex
+Failed
+solving problem N #20 --> simple
+Solved
+solving problem N #20 --> complex
+Failed
+solving problem N #21 --> simple
+Solved
+solving problem N #21 --> complex
+Failed
+solving problem N #22 --> simple
+Solved
+solving problem N #22 --> complex
+Failed
+solving problem N #23 --> simple
+Solved
+solving problem N #23 --> complex
+Solved
+solving problem N #24 --> simple
+Solved
+solving problem N #24 --> complex
+Solved
+ampl_code/example/prob7/
+ampl_code/example/prob7/prova.dat
+solving problem N #0 --> simple
+Solved
+solving problem N #1 --> simple
+Failed
+solving problem N #1 --> complex
+Failed
+solving problem N #2 --> simple
+Solved
+solving problem N #2 --> complex
+Failed
+solving problem N #3 --> simple
+Solved
+solving problem N #3 --> complex
+Failed
+solving problem N #4 --> simple
+Solved
+solving problem N #4 --> complex
+Failed
+solving problem N #5 --> simple
+Solved
+solving problem N #5 --> complex
+Failed
+solving problem N #6 --> simple
+Failed
+solving problem N #6 --> complex
+Solved
+solving problem N #7 --> simple
+Failed
+solving problem N #7 --> complex
+Failed
+solving problem N #8 --> simple
+Failed
+solving problem N #8 --> complex
+Failed
+solving problem N #9 --> simple
+Failed
+solving problem N #9 --> complex
+Failed
+solving problem N #10 --> simple
+Solved
+solving problem N #10 --> complex
+Failed
+solving problem N #11 --> simple
+Failed
+solving problem N #11 --> complex
+Failed
+solving problem N #12 --> simple
+Failed
+solving problem N #12 --> complex
+Failed
+solving problem N #13 --> simple
+Failed
+solving problem N #13 --> complex
+Failed
+solving problem N #14 --> simple
+Failed
+solving problem N #14 --> complex
+Failed
+solving problem N #15 --> simple
+Solved
+solving problem N #15 --> complex
+Failed
+solving problem N #16 --> simple
+Solved
+solving problem N #16 --> complex
+Failed
+solving problem N #17 --> simple
+Solved
+solving problem N #17 --> complex
+Failed
+solving problem N #18 --> simple
+Failed
+solving problem N #18 --> complex
+Failed
+solving problem N #19 --> simple
+Solved
+solving problem N #19 --> complex
+Failed
+solving problem N #20 --> simple
+Failed
+solving problem N #20 --> complex
+Failed
+solving problem N #21 --> simple
+Solved
+solving problem N #21 --> complex
+Failed
+solving problem N #22 --> simple
+Solved
+solving problem N #22 --> complex
+Failed
+solving problem N #23 --> simple
+Solved
+solving problem N #23 --> complex
+Failed
+solving problem N #24 --> simple
+Failed
+solving problem N #24 --> complex
+Failed
+ampl_code/example/prob8/
+ampl_code/example/prob8/prova.dat
+solving problem N #0 --> simple
+Failed
+ampl_code/example/prob9/
+ampl_code/example/prob9/prova.dat
+solving problem N #0 --> simple
+Solved
+solving problem N #1 --> simple
+Solved
+solving problem N #1 --> complex
+Solved
+solving problem N #2 --> simple
+Solved
+solving problem N #2 --> complex
+Solved
+solving problem N #3 --> simple
+Failed
+solving problem N #3 --> complex
+Failed
+solving problem N #4 --> simple
+Solved
+solving problem N #4 --> complex
+Solved
+solving problem N #5 --> simple
+Failed
+solving problem N #5 --> complex
+Solved
+solving problem N #6 --> simple
+Solved
+solving problem N #6 --> complex
+Failed
+solving problem N #7 --> simple
+Solved
+solving problem N #7 --> complex
+Failed
+solving problem N #8 --> simple
+Solved
+solving problem N #8 --> complex
+Failed
+solving problem N #9 --> simple
+Failed
+solving problem N #9 --> complex
+Failed
+solving problem N #10 --> simple
+Solved
+solving problem N #10 --> complex
+Solved
+solving problem N #11 --> simple
+Solved
+solving problem N #11 --> complex
+Failed
+solving problem N #12 --> simple
+Solved
+solving problem N #12 --> complex
+Failed
+solving problem N #13 --> simple
+Solved
+solving problem N #13 --> complex
+Failed
+solving problem N #14 --> simple
+Failed
+solving problem N #14 --> complex
+Failed
+solving problem N #15 --> simple
+Solved
+solving problem N #15 --> complex
+Solved
+solving problem N #16 --> simple
+Failed
+solving problem N #16 --> complex
+Solved
+solving problem N #17 --> simple
+Failed
+solving problem N #17 --> complex
+Solved
+solving problem N #18 --> simple
+Solved
+solving problem N #18 --> complex
+Failed
+solving problem N #19 --> simple
+Failed
+solving problem N #19 --> complex
+Failed
+solving problem N #20 --> simple
+Failed
+solving problem N #20 --> complex
+Solved
+solving problem N #21 --> simple
+Failed
+solving problem N #21 --> complex
+Solved
+solving problem N #22 --> simple
+Failed
+solving problem N #22 --> complex
+Solved
+solving problem N #23 --> simple
+Failed
+solving problem N #23 --> complex
+Solved
+solving problem N #24 --> simple
+Solved
+solving problem N #24 --> complex
+Failed

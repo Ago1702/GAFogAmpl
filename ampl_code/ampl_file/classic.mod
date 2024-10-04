@@ -1,5 +1,6 @@
 param K;					#constant for SLA
 param eps;
+param epsT = 0.00001;
 
 set Ct;
 set M;						#Set micro-serv
@@ -44,11 +45,12 @@ var Wc {c in Ct} =
 
 var Rc {c in Ct} = 
 	sum {m in C[c]} sum {f in F} X[m,f] * (Wf[f] + Sm[m] / P[f]) + Wc[c];
-	
+
+var tot_time = sum {c in Ct} Rc[c] * wc[c];
 	
 	
 minimize Active_Node:
-	sum {f in F} On[f];
+	sum {f in F} On[f] + epsT * tot_time;
 
 subject to Min_Node:
 	sum {f in F} On[f] >= 1;

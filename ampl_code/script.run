@@ -1,0 +1,8 @@
+option solver knitro;
+option knitro_options 'outlev=6 tuner=1 maxtime_real=300 ms_maxtime_real=300 ma_maxtime_real=300 mip_maxtime_real=300 numthreads=1 mip_rootalg=5';
+model ampl_file/classic.mod;
+data example7/prob0/prova.dat;
+solve;
+reset data;
+data example7/prob1/prova.dat;
+solve;

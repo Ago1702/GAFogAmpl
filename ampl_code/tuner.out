@@ -1,0 +1,247 @@
+Artelys Knitro 13.2.1: outlev=6
+tuner=1
+maxtime_real=300
+ms_maxtime_real=300
+ma_maxtime_real=300
+mip_maxtime_real=300
+numthreads=1
+
+=======================================
+          Commercial License
+         Artelys Knitro 13.2.1
+=======================================
+
+No start point provided -- Knitro computing one.
+
+concurrent_evals:        0
+datacheck:               0
+hessian_no_f:            1
+ma_maxtime_real:         300
+maxtime_real:            300
+numthreads:              1
+outlev:                  6
+tuner:                   1
+
+Knitro Tuner using default tuning options.
+Knitro Tuner will explore up to 32 option combinations.
+Knitro running Tuner with 1 thread.
+
+  Solve   Status    Objective       Relaxation    Obj. gap    #Nodes    Real Time
+--------  ------ ---------------  -------------  ---------- ---------- ----------
+       1       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.522
+       2       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.413
+       3       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.341
+       4       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.357
+       5       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.375
+       6       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.396
+       7       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.561
+       8       0    3.000000e+00   3.000000e+00  -8.882e-16        740      3.719
+       9       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    116.398
+      10       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    112.904
+      11       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    112.029
+      12       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    111.886
+      13       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    112.401
+      14       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    112.383
+      15       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    111.018
+      16       0    3.000000e+00   3.000000e+00  -1.116e-10       9480    109.334
+      17       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.263
+      18       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.316
+      19       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.277
+      20       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.331
+      21       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.280
+      22       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.308
+      23       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.386
+      24       0    3.000000e+00   3.000000e+00   0.000e+00        503      3.295
+      25       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     57.105
+      26       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     56.998
+      27       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     58.025
+      28       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     57.652
+      29       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     57.497
+      30       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     57.476
+      31       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     57.794
+      32       0    3.000000e+00   3.000000e+00  -1.625e-11       3754     57.867
+Tuner stopping, all solves have completed.
+Tuner total time (secs) =    1412.91309 (  1412.802 CPU time)
+
+The fastest locally optimal solution was found by Solve 17
+Tuner non-default option settings for this solve are:
+concurrent_evals:     0
+hessopt:              1
+hessian_no_f:         1
+linsolver_ordering:   0
+ma_maxtime_real:      300
+outlev:               6
+mip_branchrule:          2
+mip_clique:              0
+mip_gomory:              0
+mip_heuristic:           2
+mip_heuristic_diving:    0
+mip_heuristic_feaspump:  1
+mip_heuristic_misqp:     0
+mip_heuristic_mpec:      1
+mip_heuristic_lns:       0
+mip_heuristic_strategy:  1
+mip_knapsack:            1
+mip_liftproject:         0
+mip_lpalg:               3
+mip_method:              1
+mip_mir:                 0
+mip_nodealg:             1
+mip_pseudoinit:          1
+mip_rootalg:             3
+mip_rounding:            3
+mip_selectrule:          2
+mip_zerohalf:            0
+
+Summary Statistics
+--------------------------------------------------------------------------------------------------
+                                            Percent    Percent     Average     Average     Average
+    Option Name          Value      #Runs   Optimal   Feasible      ObjGap      #Nodes        Time
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+          mip_clique           0        16   100.00     100.00      -0.000      3619.2      44.330
+          mip_clique           1        16   100.00     100.00      -0.000      3619.2      43.977
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+mip_heuristic_strate           1        16   100.00     100.00      -0.000      3619.2      44.377
+mip_heuristic_strate           2        16   100.00     100.00      -0.000      3619.2      43.930
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+             mip_mir           0        16   100.00     100.00      -0.000      3619.2      44.363
+             mip_mir           1        16   100.00     100.00      -0.000      3619.2      43.943
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+         mip_nodealg           1        16   100.00     100.00      -0.000       621.5       3.384
+         mip_nodealg           3        16   100.00     100.00      -0.000      6617.0      84.923
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+         mip_rootalg           1        16   100.00     100.00      -0.000      5110.0      57.877
+         mip_rootalg           3        16   100.00     100.00      -0.000      2128.5      30.429
+--------------------------------------------------------------------------------------------------
+
+===============================================================================
+Knitro 13.2.1: Locally optimal or satisfactory solution.
+objective 3; optimality gap 0
+503 nodes; 448 subproblem solves
+
+suffix feaserror OUT;
+suffix opterror OUT;
+suffix numfcevals OUT;
+suffix numiters OUT;
+suffix incumbent OUT;
+suffix relaxbnd OUT;
+Artelys Knitro 13.2.1: outlev=6
+tuner=1
+maxtime_real=300
+ms_maxtime_real=300
+ma_maxtime_real=300
+mip_maxtime_real=300
+numthreads=1
+
+=======================================
+          Commercial License
+         Artelys Knitro 13.2.1
+=======================================
+
+No start point provided -- Knitro computing one.
+
+concurrent_evals:        0
+datacheck:               0
+hessian_no_f:            1
+ma_maxtime_real:         300
+maxtime_real:            300
+numthreads:              1
+outlev:                  6
+tuner:                   1
+
+Knitro Tuner using default tuning options.
+Knitro Tuner will explore up to 32 option combinations.
+Knitro running Tuner with 1 thread.
+
+  Solve   Status    Objective       Relaxation    Obj. gap    #Nodes    Real Time
+--------  ------ ---------------  -------------  ---------- ---------- ----------
+       1    -401    4.000000e+00   3.212196e+00   1.970e-01       5328    300.018
+       2    -401    4.000000e+00   3.212196e+00   1.970e-01       5393    300.012
+       3    -401    4.000000e+00   3.212196e+00   1.970e-01       5364    300.049
+       4    -401    4.000000e+00   3.212196e+00   1.970e-01       5393    300.034
+       5    -401    4.000000e+00   3.212196e+00   1.970e-01       5472    300.037
+       6    -401    4.000000e+00   3.212196e+00   1.970e-01       5455    300.027
+       7    -401    4.000000e+00   3.212196e+00   1.970e-01       5422    300.039
+       8    -401    4.000000e+00   3.212196e+00   1.970e-01       5472    300.021
+       9    -401    4.000000e+00   3.157895e+00   2.105e-01       9571    300.032
+      10    -401    4.000000e+00   3.157895e+00   2.105e-01       9469    300.013
+      11    -401    4.000000e+00   3.157895e+00   2.105e-01       9483    300.028
+      12    -401    4.000000e+00   3.157895e+00   2.105e-01       9425    300.026
+      13    -401    4.000000e+00   3.157895e+00   2.105e-01       9456    300.018
+      14    -401    4.000000e+00   3.157895e+00   2.105e-01       9456    300.019
+      15    -401    4.000000e+00   3.157895e+00   2.105e-01       9469    300.014
+      16    -401    4.000000e+00   3.157895e+00   2.105e-01       9469    300.037
+      17    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.724
+      18    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.726
+      19    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.725
+      20    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.726
+      21    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.728
+      22    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.719
+      23    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.728
+      24    -403    4.995800e+00  1.797693e+308   0.000e+00          5      1.722
+      25    -401    4.000000e+00   3.218616e+00   1.953e-01       5565    300.024
+      26    -401    4.000000e+00   3.218616e+00   1.953e-01       5490    300.010
+      27    -401    4.000000e+00   3.218616e+00   1.953e-01       5591    300.025
+      28    -401    4.000000e+00   3.218616e+00   1.953e-01       5548    300.025
+      29    -401    4.000000e+00   3.218616e+00   1.953e-01       5565    300.015
+      30    -401    4.000000e+00   3.218616e+00   1.953e-01       5548    300.018
+      31    -401    4.000000e+00   3.218616e+00   1.953e-01       5548    300.009
+      32    -401    4.000000e+00   3.218616e+00   1.953e-01       5591    300.009
+Tuner stopping, all solves have completed.
+Tuner total time (secs) =    7214.36230 (  7213.771 CPU time)
+
+The fastest locally feasible solution was found by Solve 9
+Tuner non-default option settings for this solve are:
+concurrent_evals:     0
+hessopt:              1
+hessian_no_f:         1
+linsolver_ordering:   0
+ma_maxtime_real:      300
+outlev:               6
+mip_branchrule:          2
+mip_clique:              0
+mip_gomory:              0
+mip_heuristic:           2
+mip_heuristic_diving:    0
+mip_heuristic_feaspump:  1
+mip_heuristic_misqp:     0
+mip_heuristic_mpec:      1
+mip_heuristic_lns:       0
+mip_heuristic_strategy:  1
+mip_knapsack:            1
+mip_liftproject:         0
+mip_lpalg:               3
+mip_method:              1
+mip_mir:                 0
+mip_nodealg:             3
+mip_pseudoinit:          1
+mip_rootalg:             1
+mip_rounding:            3
+mip_selectrule:          2
+mip_zerohalf:            0
+
+Summary Statistics
+--------------------------------------------------------------------------------------------------
+                                            Percent    Percent     Average     Average     Average
+    Option Name          Value      #Runs   Optimal   Feasible      ObjGap      #Nodes        Time
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+          mip_clique           0        16     0.00     100.00       0.151      5115.9     225.451
+          mip_clique           1        16     0.00     100.00       0.151      5108.1     225.447
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+mip_heuristic_strate           1        16     0.00     100.00       0.151      5111.8     225.446
+mip_heuristic_strate           2        16     0.00     100.00       0.151      5112.2     225.451
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+             mip_mir           0        16     0.00     100.00       0.151      5102.5     225.450
+             mip_mir           1        16     0.00     100.00       0.151      5121.4     225.448
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+         mip_nodealg           1        16     0.00     100.00       0.098      2708.7     150.877
+         mip_nodealg           3        16     0.00     100.00       0.203      7515.2     300.020
+--------------------  ----------  --------  -------  ---------  ----------  ----------  ----------
+         mip_rootalg           1        16     0.00     100.00       0.204      7443.6     300.026
+         mip_rootalg           3        16     0.00     100.00       0.098      2780.4     150.871
+--------------------------------------------------------------------------------------------------
+
+===============================================================================
+Knitro 13.2.1: Time limit reached. Current point is feasible.
+objective 3.999999999; optimality gap 0.842
+9571 nodes; 9925 subproblem solves

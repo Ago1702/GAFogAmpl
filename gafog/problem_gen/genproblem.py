@@ -25,9 +25,9 @@ def get_fog(config):
     fog = {}
     # generate capacities of fog nodes
     # fog nodes capcities are normally distribute with mean=avgcap, CoV=0.2
-    # cap=list(numpy.random.normal(loc=avgcap, scale=0.2*avgcap, size=n_fog))
+    cap=list(numpy.random.normal(loc=avgcap, scale=0.2*avgcap, size=n_fog))
     # all fog nodes are identical
-    cap = [1.0] * n_fog
+    #cap = [1.0] * n_fog
     # remove negative values
     for idx, val in enumerate(cap):
         if val < mincap:
