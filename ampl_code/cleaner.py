@@ -3,6 +3,8 @@ from pathlib import Path
 
 PATH = '/home/ampl/agos/fog/GAFogAmpl/ampl_code/example_c0'
 
+#ciao
+
 lol = Path(PATH)
 for num in range(10):
     p = lol / f'prob{num}'
