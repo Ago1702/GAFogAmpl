@@ -28,3 +28,5 @@ best_sol_dumps/
 experiment_analysis/
 run_paper.sh
 analysis/
+
+example/

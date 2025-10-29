@@ -14,7 +14,7 @@ class ProblemPerf(Problem):
 
     def dump_problem(self):
         """ Returns a dict of the problem's values. """
-        rv=super().dump_problem(self)
+        rv=super().dump_problem()
         return rv
 
     def __str__(self):
