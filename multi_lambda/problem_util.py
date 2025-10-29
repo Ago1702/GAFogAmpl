@@ -246,7 +246,7 @@ def variable_problem(problem_path, util:AmplProbUtil, config=base_config):
         config (dict, optional): json contenete le impostazioni di configurazione. Defaults to base_config.
 
     Returns:
-        ProblemPerf|ProblemPwr: il problema al time slot 0
+        dict: dizionario del problema al time slot 0
         csv_path: la poszione del file csv
     """
     config['rho'] = 0.7
@@ -262,10 +262,10 @@ def variable_problem(problem_path, util:AmplProbUtil, config=base_config):
         for sv in prob_d["servicechain"][chain]["services"]:
             prob_d["microservice"][sv]["lambda"] = supp["microservice"][sv]["lambda"]
     with open(problem_path, "w+") as f:
-        js.dump(prob.dump_problem(), f, indent=2)
+        js.dump(prob_d, f, indent=2)
         f.close()
     csv_path = util.lambda_changer(problem_path.__str__(), max_, min_, delta_)
-    return prob, csv_path
+    return prob_d, csv_path
 
 def const_problem(problem_path, util:AmplProbUtil, config=base_config):
     """
@@ -277,7 +277,7 @@ def const_problem(problem_path, util:AmplProbUtil, config=base_config):
         config (dict, optional): json contenete le impostazioni di configurazione. Defaults to base_config.
 
     Returns:
-        ProblemPerf|ProblemPwr: il problema al time slot 0
+        dict: dizionario del problema al time slot 0
         csv_path: la poszione del file csv
     """
     base = config["rho"]
@@ -305,7 +305,7 @@ def const_problem(problem_path, util:AmplProbUtil, config=base_config):
         js.dump(prob_d, f, indent=2)
         f.close()
     csv_path = util.lambda_constant(problem_path.__str__(), max_, min_, delta)
-    return prob, csv_path
+    return prob_d, csv_path
 
 if __name__ == '__main__':
     util = AmplProbUtil()
